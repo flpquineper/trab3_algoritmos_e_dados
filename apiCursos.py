@@ -164,11 +164,11 @@ def grafico():
 # --------------------------------------------- Programa Principal
 while True:
   titulo("Cadastro de Filmes - Uso de API")
-  print("1. Inclusão de Filmes")
-  print("2. Listagem de Filmes")
-  print("3. Alteração de Filmes")
-  print("4. Exclusão de Filmes")
-  print("5. Gráfico Comparando Gêneros")
+  print("1. Inclusão de Cursos")
+  print("2. Listagem de Cursos")
+  print("3. Alteração de Custo")
+  print("4. Exclusão de Cursos")
+  print("5. Gráfico Comparando Tipos de Cursos")
   print("6. Finalizar")
   opcao = int(input("Opção: "))
   if opcao == 1:
