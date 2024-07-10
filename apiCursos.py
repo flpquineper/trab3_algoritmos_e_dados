@@ -1,6 +1,6 @@
 import requests
 import matplotlib.pyplot as plt
-url = "http://localhost:3000/cursos"
+url = "http://localhost:3000/curso"
 
 def titulo(texto, sublinhado="-"):
   print()
@@ -11,16 +11,16 @@ def titulo(texto, sublinhado="-"):
 def incluir():
   titulo("Inclusão de Cursos")
 
-  nome    = input("Nome do Curso..: ")
+  nome  = input("Nome do Curso..: ")
   tipo  = input("Tipo.........: ") 
-  custo = input("Custo Total........: ")
+  valor = input("Valor Total........: ")
   nomeProfessor   = input("Nome do Professor..: ")
 
 
 
   response = requests.post(url, json=  {"nome": nome,
                                        "tipo": tipo,
-                                       "custo": custo,
+                                       "valor": valor,
                                        "nomeProfessor": nomeProfessor})
   
   if response.status_code == 201:
@@ -37,8 +37,8 @@ def incluir():
 def listar():
   titulo("Listagem dos Cursos Disponíveis!")
 
-  print("Cód.  Nome do Curso........:  Tipo....:     Custo total R$....:   Nome do Professor.....:  " )
-  print("===========================================================================================" )
+  print("  Cód.    Nome do Curso........:    Tipo....:      Custo total R$....:     Professor.....: " )
+  print("==================================================================================" )
 
   response = requests.get(url)
 
@@ -51,8 +51,7 @@ def listar():
 
 
   for curso in cursos:
-    print(f"{curso['id']:4d} {curso['nome']:30s} {curso['tipo']:12s} {curso['custo']:4d} {curso['nomeProfessor']:12s}")
-
+    print(f"{curso['id']:4d} {curso['nome']:30s} {curso['tipo']:12s} {curso['valor']:30s} {curso['nomeProfessor']:12s}")
 
 
 
@@ -79,15 +78,15 @@ def alterar():
 
   print(f"Nome do Curso....: {curso [0] ['nome']}")
   print(f"Tipo.............: {curso [0] ['tipo']}")
-  print(f"Custo Total R$...: {curso [0] ['custo']}")
-  print(f"Nome do Professor: {curso [0] ['nomeProfessor']}")
+  print(f"Valor Total R$...: {curso [0] ['valor']}")
+  print(f"Professor: {curso [0] ['nomeProfessor']}")
   print()
 
 
-  novo_custo = input("Novo Preço R$:    ")
+  novo_valor = input("Novo Preço R$:    ")
 
 
-  response = requests.put(url+"/"+str(id), json={"custo": novo_custo})
+  response = requests.put(url+"/"+str(id), json={"valor": novo_valor})
 
 
   if response.status_code == 200:
@@ -122,8 +121,8 @@ def excluir():
 
   print(f"Nome do Curso....: {curso [0] ['nome']}")
   print(f"Tipo.............: {curso [0] ['tipo']}")
-  print(f"Custo Total R$...: {curso [0] ['custo']}")
-  print(f"Nome do Professor: {curso [0] ['nomeProfessor']}")
+  print(f"Valor Total R$...: {curso [0] ['valor']}")
+  print(f"Professor: {curso [0] ['nomeProfessor']}")
   print()
 
   confirma  = input("Confirma a exclusão deste curso(S/N)? ").upper()
